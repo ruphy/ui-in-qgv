@@ -2,10 +2,9 @@
  
  #include <QtGui>
 
- #include "view.h"
- #include "ui_widj.h"
-
- static const int MouseCount = 7;
+// #include "view.h"
+ #include <ui_widj.h>
+ #include <view.h>
 
  int main(int argc, char **argv)
  {
@@ -17,7 +16,7 @@
     scene.setItemIndexMethod(QGraphicsScene::NoIndex);
     
     QWidget w;
-    QGraphicsProxyWidget p;
+    Item p;
     p.setWidget(&w);
     Ui::MainWidget ui;
     ui.setupUi(&w);
@@ -33,7 +32,7 @@
     view.resize(400, 300);
     view.show();
 
-    connect(view, SIGNAL(resized(QSize)), p, SLOT(resize(QSize)));
+    QObject::connect(&view, SIGNAL(resized(QSize)), &p, SLOT(resizee(QSize)));
 
     return app.exec();
  }
